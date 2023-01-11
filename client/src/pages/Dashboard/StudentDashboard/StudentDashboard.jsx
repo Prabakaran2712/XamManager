@@ -1,8 +1,12 @@
 import styles from "./StudentDashboard.module.css";
 import { useState } from "react";
+import StudentProfile from "../../../components/dashboard/StudentProfile/StudentProfile";
+import Courses from "../../../components/dashboard/Courses/Courses";
 const StudentDashboard = () => {
   const [page, setPage] = useState("profile");
-
+  const switchpage = (page) => {
+    setPage(page);
+  };
   return (
     <div className={styles.dashboard}>
       <div className={" py-5 text-center " + styles["sidebar"]}>
@@ -17,10 +21,10 @@ const StudentDashboard = () => {
         <div
           className={"p-4 m-2 display " + styles["element"]}
           onClick={() => {
-            switchpage("enroll");
+            switchpage("course");
           }}
         >
-          Enroll Courses
+          Courses
         </div>
         <div
           className={"p-4 m-2 display " + styles["element"]}
@@ -47,7 +51,10 @@ const StudentDashboard = () => {
           view Attendance
         </div>
       </div>
-      <div className={styles["main-content"]}></div>
+      <div className={"w-100 " + styles["main-content"]}>
+        {page === "profile" ? <StudentProfile /> : null}
+        {page === "course" ? <Courses /> : null}
+      </div>
     </div>
   );
 };
