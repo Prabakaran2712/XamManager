@@ -6,6 +6,10 @@ const studentController = require("../controllers/student");
 const courseController = require("../controllers/course");
 const departmentController = require("../controllers/department");
 //staff
+
+//get courses for a staff
+router.get("/getStaffCourses/:id", staffController.getStaffCourses);
+
 //sign up
 router.post("/staffsignup", staffController.signup);
 
@@ -37,11 +41,11 @@ router.post("/studentlogin", studentController.login);
 
 //info
 //id-rollNo
-router.get("/studentinfo/:id",studentController.studentInfo);
+router.get("/studentinfo/:id", studentController.studentInfo);
 
 //examslist for a department
 //id-deptID
-router.get("/examslist/:id",studentController.examsList);
+router.get("/examslist/:id", studentController.examsList);
 
 //update
 //id-rollNo

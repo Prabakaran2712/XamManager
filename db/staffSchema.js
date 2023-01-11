@@ -20,16 +20,16 @@ const schema = new mongoose.Schema(
       required: [true, "Required Field"],
     },
     courses: {
-      type: Array,
-      required: [true, "Required Field"],
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "course",
     },
     password: {
       type: String,
       required: [true, "Required Field"],
     },
-    exams:{
-      type:Array,
-      default:[],
+    exams: {
+      type: Array,
+      default: [],
     },
     verified: {
       type: Boolean,

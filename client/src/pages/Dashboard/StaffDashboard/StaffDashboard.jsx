@@ -3,6 +3,7 @@ import { useState } from "react";
 import StudentProfile from "../../../components/dashboard/StudentProfile/StudentProfile";
 import Courses from "../../../components/dashboard/Courses/Courses";
 import HallTicket from "../../../components/dashboard/HallTicket/HallTicket";
+import Exam from "../../../components/dashboard/Exam/Exam";
 const StaffDashboard = () => {
   const [page, setPage] = useState("profile");
   const switchpage = (page) => {
@@ -22,10 +23,10 @@ const StaffDashboard = () => {
         <div
           className={"p-4 m-2 display " + styles["element"]}
           onClick={() => {
-            switchpage("course");
+            switchpage("exam");
           }}
         >
-          Courses
+          Create Exam
         </div>
         <div
           className={"p-4 m-2 display " + styles["element"]}
@@ -54,7 +55,7 @@ const StaffDashboard = () => {
       </div>
       <div className={"w-100 " + styles["main-content"]}>
         {page === "profile" ? <StudentProfile /> : null}
-        {page === "course" ? <Courses /> : null}
+        {page === "exam" ? <Exam /> : null}
         {page === "hallticket" ? <HallTicket /> : null}
       </div>
     </div>

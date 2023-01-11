@@ -26,7 +26,7 @@ exports.getCourses = async (req, res) => {
 //get course bt department
 exports.getCourse = async (req, res) => {
   try {
-    data = await course.find({deptID:req.params.id,taken:false});
+    data = await course.find({ deptID: req.params.id, taken: false });
     if (data != null) {
       res.status(200).json(data);
     } else {
@@ -42,21 +42,25 @@ exports.getCourse = async (req, res) => {
 };
 
 //choosing course
-exports.chooseCourse=async (req,res)=>{
-  try{
-    await course.findOneAndUpdate({subjectCode:req.body.subjectCode},{taken:true});
-    await staffs.updateOne({staffID:req.body.staffID},{$push:{courses:req.body.subjectCode}});
+exports.chooseCourse = async (req, res) => {
+  try {
+    await course.findOneAndUpdate(
+      { subjectCode: req.body.subjectCode },
+      { taken: true }
+    );
+    await staffs.updateOne(
+      { staffID: req.body.staffID },
+      { $push: { courses: req.body.subjectCode } }
+    );
     res.status(200).json({
-      status:"success"
+      status: "success",
     });
-  }
-  catch(err){
+  } catch (err) {
     res.status(404).json({
       message: err.message,
     });
   }
-}
-
+};
 
 //create new course
 exports.createCourse = async (req, res) => {
