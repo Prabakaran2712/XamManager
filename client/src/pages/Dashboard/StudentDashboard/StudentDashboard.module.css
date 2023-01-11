@@ -1,0 +1,26 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 15%;
+  height: 100%;
+  background-image: linear-gradient(25deg, #d64c7f, #ee4758 50%);
+}
+.dashboard {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+}
+.element {
+  color: white;
+  font-size: 22px;
+  font-weight: 300;
+}
+.element .selected {
+  border-left: 10px;
+}
+.main-content {
+  overflow: scroll;
+}

@@ -1,10 +1,11 @@
 import styles from "./StudentDashboard.module.css";
+import { useState } from "react";
 const StudentDashboard = () => {
   const [page, setPage] = useState("profile");
 
   return (
-    <div className="dashboard">
-      <div className="sidebar py-5 text-center">
+    <div className={styles.dashboard}>
+      <div className={" py-5 text-center " + styles["sidebar"]}>
         <div
           className={"p-4 m-2 display " + styles["element"]}
           onClick={() => {
@@ -46,7 +47,7 @@ const StudentDashboard = () => {
           view Attendance
         </div>
       </div>
-      <div className={styles.main - content}></div>
+      <div className={styles["main-content"]}></div>
     </div>
   );
 };

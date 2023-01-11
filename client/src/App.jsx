@@ -7,6 +7,7 @@ import StaffSignup from "./pages/auth/staff/StaffSignup";
 import Logout from "./pages/auth/Logout";
 import Home from "./pages/Home/Home";
 import HallTicket from "./components/dashboard/HallTicket";
+import StudentDashboard from "./pages/Dashboard/StudentDashboard/StudentDashboard";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,15 @@ const router = createBrowserRouter([
       {
         path: "/test",
         element: <HallTicket />,
+      },
+      {
+        path: "dashboard/",
+        children: [
+          {
+            path: "student/",
+            element: <StudentDashboard />,
+          },
+        ],
       },
       {
         path: "auth/",
