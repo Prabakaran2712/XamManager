@@ -63,7 +63,7 @@ router.post("/verifyst", studentController.verifyEmailConfirmation);
 router.get("/hallticket/:id", studentController.getHallticket);
 
 //exam notifications
-router.get("/notifications", studentController.getNotifications);
+router.get("/notifications/:id", studentController.getNotifications);
 
 //exam
 //create

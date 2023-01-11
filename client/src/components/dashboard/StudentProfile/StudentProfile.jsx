@@ -73,7 +73,7 @@ const StudentProfile = () => {
                   />
                 </div>
               </div>
-              <div className="row mt-3">
+              <div className="row mt-3 mx-1">
                 <div className="col-md-10">
                   <label className="labels my-3">Roll Number</label>
                   <input

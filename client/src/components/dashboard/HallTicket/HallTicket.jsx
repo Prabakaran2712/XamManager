@@ -84,7 +84,9 @@ const HallTicket = () => {
   if (!loading) {
     return (
       <div className="container">
-        <h1>hello</h1>
+        <div className="header">
+          <p className="display-1 my-5">HallTicket</p>
+        </div>
         <div className="mx-auto">
           <embed
             type="application/pdf"

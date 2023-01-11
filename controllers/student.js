@@ -227,8 +227,9 @@ exports.getHallticket = async (req, res) => {
 //notifications
 exports.getNotifications = async (req, res) => {
   try {
+    console.log("huher");
     const list = await notifications.find(
-      { deptID: req.body.deptID },
+      { deptID: req.params.id },
       { _id: 0, __v: 0 }
     );
     if (list != null) {
