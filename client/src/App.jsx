@@ -6,6 +6,7 @@ import VerifyStaff from "./pages/auth/staff/VerifyStaff";
 import StaffSignup from "./pages/auth/staff/StaffSignup";
 import Logout from "./pages/auth/Logout";
 import Home from "./pages/Home/Home";
+import HallTicket from "./components/dashboard/HallTicket";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/test",
+        element: <HallTicket />,
       },
       {
         path: "auth/",

@@ -47,7 +47,7 @@ router.get("/studentslist", studentController.list);
 router.post("/verifyst", studentController.verifyEmailConfirmation);
 
 //hallticket retrieval
-router.get("/hallticket", studentController.getHallticket);
+router.post("/hallticket", studentController.getHallticket);
 
 //exam notifications
 router.get("/notifications", studentController.getNotifications);
