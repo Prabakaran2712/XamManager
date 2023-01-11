@@ -27,7 +27,10 @@ const HallTicket = () => {
       .get("api/studentinfo/202099")
       .then((res) => {
         console.log(res.data[0].name);
-        htmlContent += "<h1 class='text-primary'>HallTicket</h1>";
+        htmlContent += "<div class='hall-ticket'>";
+        htmlContent += "<div class='text-center'>";
+        htmlContent += "<h1 class='display-5 '>HallTicket</h1>";
+        htmlContent += "</div>";
         htmlContent += "<h1>Name:" + res.data[0].name + "</h1>";
         htmlContent += "<h1>RollNumber:" + res.data[0].rollNo + "</h1>";
         htmlContent +=
@@ -50,6 +53,7 @@ const HallTicket = () => {
               "</td><td></td></tr>";
           }
           htmlContent += "</tbody></table>";
+          htmlContent += "</div>";
           const pdf = new jsPDF({
             orientation: "p",
             unit: "pt",
@@ -76,7 +80,7 @@ const HallTicket = () => {
   if (!loading) {
     return (
       <div>
-        <h1>hello</h1>
+        <h1 className="display-1">Hall Ticket</h1>
         <embed
           type="application/pdf"
           src={pdfSource}
@@ -90,40 +94,3 @@ const HallTicket = () => {
   }
 };
 export default HallTicket;
-
-// const pdf = new jsPDF({
-//   orientation: "p",
-//   unit: "pt",
-//   format: "a4",
-// });
-// pdf
-//   .html(htmlContent, {
-//     windowWidth: 794,
-//     html2canvas: { scale: 0.57 },
-//   })
-//   .then(() => {
-//     pdf.save('test.pdf');
-//   });
-// useEffect(() => {
-//   axios
-//     .post("api/hallticket", { rollNo: "202099" })
-//     .then((res) => {
-//       //   console.log("success");
-//       //   console.log(res);
-
-//       // const data = Uint8Array.from(res.data);
-//       //   const content = new Blob(res.data, {
-//       //     type: "application/pdf",
-//       //   });
-//       //   setEncodedUri(window.URL.createObjectURL(content));
-//       //   console.log(encodedUri);
-//       //   setLoading(false);
-//       // }
-
-//       // var blob = new Blob([data], { type: "application/pdf" });
-//       // FileSaver.saveAs(blob, "filename.pdf");
-//     })
-//     .catch((err) => {
-//       console.log("err" + err);
-//     });
-// }, []);

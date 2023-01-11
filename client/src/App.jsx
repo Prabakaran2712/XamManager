@@ -12,6 +12,7 @@ import StudentSignup from "./pages/auth/student/StudentSignup";
 import VerifyStudent from "./pages/auth/student/VerifyStudent";
 import StudentLogin from "./pages/auth/student/StudentLogin";
 import StaffLogin from "./pages/auth/staff/StaffLogin";
+import StaffDashboard from "./pages/Dashboard/StaffDashboard/StaffDashboard";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
           {
             path: "student/",
             element: <StudentDashboard />,
+          },
+          {
+            path: "staff/",
+            element: <StaffDashboard />,
           },
         ],
       },
