@@ -2,7 +2,7 @@ const students = require("../db/studentModel");
 const otps = require("../db/otpModel");
 const notifications = require("../db/notifyModel");
 const nodemailer = require("nodemailer");
-const exams=require('../db/examModel');
+const exams = require("../db/examModel");
 const bcrypt = require("bcryptjs");
 
 //student
@@ -86,54 +86,58 @@ exports.list = async (req, res) => {
 };
 
 //student detail getting
-exports.studentInfo=async (req,res)=>{
-  try{
+exports.studentInfo = async (req, res) => {
+  try {
     console.log(req.params.id);
-    const student=await students.find({rollNo:req.params.id},{_id:0,__v:0});
-    if(student!=null){
+    const student = await students.find(
+      { rollNo: req.params.id },
+      { _id: 0, __v: 0 }
+    );
+    if (student != null) {
       res.status(200).json(student);
     }
-  }
-  catch(err){
+  } catch (err) {
     res.status(404).json({
       status: "fail",
       message: err,
     });
   }
-}
+};
 
 //examslist of a department
-exports.examsList=async (req,res)=>{
-  try{
-    const data=await exams.find({deptID:req.params.id},{_id:0,__v:0});
-    if(data.length>0){
+exports.examsList = async (req, res) => {
+  try {
+    const data = await exams.find(
+      { deptID: req.params.id },
+      { _id: 0, __v: 0 }
+    );
+    if (data.length > 0) {
       res.status(200).json(data);
-    }
-    else{
+    } else {
       res.status(200).json({
-        message:"no exams"
+        message: "no exams",
       });
     }
-  }
-  catch(err){
+  } catch (err) {
     res.status(404).json({
       status: "fail",
       message: err,
     });
   }
-}
+};
 
 exports.login = async (req, res) => {
   try {
     // const data=await students.findOne({email:req.body.email,password:req.body.password},{_id:0,v__:0});
     const users = await students
-      .findOne({ email: req.body.email }, { _id: 0, __v: 0 })
+      .findOne({ email: req.body.email })
       .then((user) => {
         //comparing hashing password with entered password
         bcrypt.compare(req.body.password, user.password, (err, result) => {
           if (result) {
             return res.status(200).json({
               auth: 1,
+              rollNo: user.rollNo,
             });
           } else {
             return res.status(200).json({

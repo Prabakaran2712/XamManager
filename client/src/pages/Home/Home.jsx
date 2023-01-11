@@ -23,7 +23,7 @@ const Home = () => {
             styles["sub-container"]
           }
           onClick={() => {
-            routeTo("/studentLogin");
+            routeTo("/auth/login/student");
           }}
         >
           <div className="display-6">Student</div>
@@ -35,7 +35,7 @@ const Home = () => {
             styles["sub-container"]
           }
           onClick={() => {
-            routeTo("/staffLogin");
+            routeTo("/auth/login/staff");
           }}
         >
           <div className="display-6">Staff</div>
