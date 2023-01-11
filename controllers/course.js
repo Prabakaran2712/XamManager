@@ -46,7 +46,7 @@ exports.chooseCourse = async (req, res) => {
   try {
     const courses = req.body.courses;
     for (let i = 0; i < req.body.courses.length; i++) {
-      await course.findOneAndUpdate({ id: courses[i] }, { taken: true });
+      await course.findByIdAndUpdate(courses[i], { taken: true });
       await staffs.updateOne(
         { staffID: req.body.staffID },
         { $push: { courses: courses[i] } }
