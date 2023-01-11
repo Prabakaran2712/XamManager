@@ -2,6 +2,7 @@ import styles from "./StudentDashboard.module.css";
 import { useState } from "react";
 import StudentProfile from "../../../components/dashboard/StudentProfile/StudentProfile";
 import Courses from "../../../components/dashboard/Courses/Courses";
+import HallTicket from "../../../components/dashboard/HallTicket/HallTicket";
 const StudentDashboard = () => {
   const [page, setPage] = useState("profile");
   const switchpage = (page) => {
@@ -54,6 +55,7 @@ const StudentDashboard = () => {
       <div className={"w-100 " + styles["main-content"]}>
         {page === "profile" ? <StudentProfile /> : null}
         {page === "course" ? <Courses /> : null}
+        {page === "hallticket" ? <HallTicket /> : null}
       </div>
     </div>
   );
