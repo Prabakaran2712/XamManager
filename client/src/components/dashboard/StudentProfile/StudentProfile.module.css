@@ -1,0 +1,26 @@
+.form-control:focus {
+  box-shadow: none;
+  border-color: #ba68c8;
+}
+
+.labels {
+  font-size: 11px;
+}
+
+.labels {
+  font-size: 20px;
+  font-weight: 200;
+  font-family: var(--bs-body-font-family);
+}
+.btn {
+  background-color: #ee4758;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 5px;
+}
+.btn:hover {
+  background-image: none;
+  background-color: white;
+  border-color: #ee4758;
+  color: #ee4758;
+}
