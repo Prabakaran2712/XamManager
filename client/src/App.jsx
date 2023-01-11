@@ -10,6 +10,8 @@ import HallTicket from "./components/dashboard/HallTicket/HallTicket";
 import StudentDashboard from "./pages/Dashboard/StudentDashboard/StudentDashboard";
 import StudentSignup from "./pages/auth/student/StudentSignup";
 import VerifyStudent from "./pages/auth/student/VerifyStudent";
+import StudentLogin from "./pages/auth/student/StudentLogin";
+import StaffLogin from "./pages/auth/staff/StaffLogin";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +50,14 @@ const router = createBrowserRouter([
                 element: <StudentSignup />,
               },
             ],
+          },
+          {
+            path: "login/staff",
+            element: <StaffLogin />,
+          },
+          {
+            path: "login/student",
+            element: <StudentLogin />,
           },
           {
             path: "verify/staff/",

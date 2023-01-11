@@ -86,24 +86,26 @@ exports.list = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     // const data=await staffs.findOne({email:req.body.email,password:req.body.password},{_id:0,v__:0});
-    const users = await staffs
-      .findOne({ email: req.body.email }, { _id: 0, __v: 0 })
-      .then((user) => {
-        //comparing hashing password with entered password
-        bcrypt.compare(req.body.password, user.password, (err, result) => {
-          if (result) {
-            return res.status(200).json({
-              auth: 1,
-            });
-          } else {
-            return res.status(200).json({
-              auth: 0,
-            });
-          }
+    const user = await staffs.findOne({ email: req.body.email });
+    if (!user) {
+      return res.status(400).json({ message: "No such user" });
+    }
+    //comparing hashing password with entered password
+    bcrypt.compare(req.body.password, user.password, (err, result) => {
+      if (result) {
+        return res.status(200).json({
+          auth: 1,
+          staffID: user.staffID,
         });
-      });
+      } else {
+        return res.status(200).json({
+          auth: 0,
+        });
+      }
+    });
   } catch (err) {
-    res.status(404).json({
+    console.log(err);
+    res.status(400).json({
       status: "fail",
       message: err,
     });
