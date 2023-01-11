@@ -21,48 +21,52 @@ const HallTicket = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [encodedUri, setEncodedUri] = useState(null);
   const [loading, setLoading] = useState(true);
-  var htmlContent = "";
   useEffect(() => {
     axios
       .get("api/studentinfo/202099")
       .then((res) => {
+        const pdf = new jsPDF({
+          unit: "px",
+          hotfixes: ["px_scaling"],
+        });
         console.log(res.data[0].name);
-        htmlContent += "<div class='hall-ticket'>";
-        htmlContent += "<div class='text-center'>";
-        htmlContent += "<h1 class='display-5 '>HallTicket</h1>";
-        htmlContent += "</div>";
-        htmlContent += "<h1>Name:" + res.data[0].name + "</h1>";
-        htmlContent += "<h1>RollNumber:" + res.data[0].rollNo + "</h1>";
+        let htmlContent = "";
+        htmlContent += "<div class='text-center'><h1>Hall Ticket</h1></div>";
         htmlContent +=
-          "<h1>DepartmentID:" +
+          "<div class='container'><table><tr><td><b class='me-5'>Name:</b></td><td>" +
+          res.data[0].name +
+          "</td></tr>";
+        htmlContent +=
+          "<tr><td><b class='me-5'>Roll Number:</b></td><td>" +
+          res.data[0].rollNo +
+          "</td></tr>";
+        htmlContent +=
+          "<tr><td><b class='me-5'>Department:</b></td><td>" +
           res.data[0].deptID +
-          `</h1><table class="table table-striped-columns"><tbody>`;
+          `</td></tr></table><div style='height: 50px'></div><table style='border: 1px solid black; border-collapse: collapse; margin: 0 auto; width: 80%;border-collapse: collapse'><thead><tr>`;
+        htmlContent += `<th style='border: 1px solid grey'>Subject Name</th><th style='border: 1px solid grey'>Subject Code</th><th style='border: 1px solid grey'>Date</th>`;
+        htmlContent += `<th style='border: 1px solid grey'>Session</th></tr></thead><tbody>`;
 
         axios.get("api/examslist/it").then((res) => {
-          console.log(res.data);
           for (let i = 0; i < res.data.length; i++) {
             htmlContent +=
-              "<tr><td>" +
+              "<tr><td style='border: 1px solid grey'>" +
               res.data[i].subjectName +
-              "</td><td>" +
+              "</td><td style='border: 1px solid grey'>" +
               res.data[i].subjectCode +
-              "</td><td>" +
+              "</td><td style='border: 1px solid grey'>" +
               getDate(res.data[i].examDate) +
-              "</td><td>" +
+              "</td><td style='border: 1px solid grey'>" +
               res.data[i].session +
-              "</td><td></td></tr>";
+              "</td></tr>";
           }
-          htmlContent += "</tbody></table>";
-          htmlContent += "</div>";
-          const pdf = new jsPDF({
-            orientation: "p",
-            unit: "pt",
-            format: "a4",
-          });
+          htmlContent += "</tbody></table></div>";
+          // htmlContent =
+          //   "<div style='background-color:red' class='text-center text-light'>Hello world</div>";
           pdf
             .html(htmlContent, {
-              windowWidth: 794,
-              html2canvas: { scale: 0.57 },
+              width: 800,
+              windowWidth: 800,
             })
             .then(() => {
               setPdfSource(pdf.output("datauristring"));
@@ -79,14 +83,16 @@ const HallTicket = () => {
   }
   if (!loading) {
     return (
-      <div>
-        <h1 className="display-1">Hall Ticket</h1>
-        <embed
-          type="application/pdf"
-          src={pdfSource}
-          width="1200px"
-          height="400px"
-        ></embed>
+      <div className="container">
+        <h1>hello</h1>
+        <div className="mx-auto">
+          <embed
+            type="application/pdf"
+            src={pdfSource}
+            width="100%"
+            height="500px"
+          ></embed>
+        </div>
       </div>
     );
   } else {
