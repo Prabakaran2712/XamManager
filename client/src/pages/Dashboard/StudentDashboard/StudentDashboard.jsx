@@ -1,7 +1,9 @@
 import styles from "./StudentDashboard.module.css";
 import { useState } from "react";
+import HallTicket from "../../../components/dashboard/HallTicket/HallTicket";
+
 const StudentDashboard = () => {
-  const [page, setPage] = useState("profile");
+  const [page, setPage] = useState("hallticket");
 
   return (
     <div className={styles.dashboard}>
@@ -47,7 +49,9 @@ const StudentDashboard = () => {
           view Attendance
         </div>
       </div>
-      <div className={styles["main-content"]}></div>
+      <div className={styles["main-content"]}>
+        {page==="hallticket"?<HallTicket/>:null}
+      </div>
     </div>
   );
 };

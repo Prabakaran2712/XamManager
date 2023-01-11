@@ -6,7 +6,7 @@ import VerifyStaff from "./pages/auth/staff/VerifyStaff";
 import StaffSignup from "./pages/auth/staff/StaffSignup";
 import Logout from "./pages/auth/Logout";
 import Home from "./pages/Home/Home";
-import HallTicket from "./components/dashboard/HallTicket";
+import HallTicket from "./components/dashboard/HallTicket/HallTicket";
 import StudentDashboard from "./pages/Dashboard/StudentDashboard/StudentDashboard";
 
 const router = createBrowserRouter([
