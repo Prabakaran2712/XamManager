@@ -8,6 +8,7 @@ import Logout from "./pages/auth/Logout";
 import Home from "./pages/Home/Home";
 import HallTicket from "./components/dashboard/HallTicket/HallTicket";
 import StudentDashboard from "./pages/Dashboard/StudentDashboard/StudentDashboard";
+import StudentSignup from "./pages/auth/student/StudentSignup";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
               {
                 path: "staff/",
                 element: <StaffSignup />,
+              },
+              {
+                path: "children",
+                element: <StudentSignup />,
               },
             ],
           },

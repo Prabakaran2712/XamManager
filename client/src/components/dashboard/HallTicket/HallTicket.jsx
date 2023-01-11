@@ -21,28 +21,19 @@ const HallTicket = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [encodedUri, setEncodedUri] = useState(null);
   const [loading, setLoading] = useState(true);
-  var htmlContent = `<style>
-            table{
-                width:100%
-            }
-            th, td, tr {
-            border-bottom: 1px solid #ddd;
-            padding: 7px;
-            text-align: center;
-        }
-        </style>`;
+  var htmlContent = "";
   useEffect(() => {
     axios
       .get("api/studentinfo/202099")
       .then((res) => {
         console.log(res.data[0].name);
-        htmlContent += "<h1>HallTicket</h1>";
+        htmlContent += "<h1 class='text-primary'>HallTicket</h1>";
         htmlContent += "<h1>Name:" + res.data[0].name + "</h1>";
         htmlContent += "<h1>RollNumber:" + res.data[0].rollNo + "</h1>";
         htmlContent +=
           "<h1>DepartmentID:" +
           res.data[0].deptID +
-          `</h1><table style='width:100%'>`;
+          `</h1><table class="table table-striped-columns"><tbody>`;
 
         axios.get("api/examslist/it").then((res) => {
           console.log(res.data);
@@ -58,7 +49,7 @@ const HallTicket = () => {
               res.data[i].session +
               "</td><td></td></tr>";
           }
-          htmlContent += "</table>";
+          htmlContent += "</tbody></table>";
           const pdf = new jsPDF({
             orientation: "p",
             unit: "pt",
@@ -89,8 +80,8 @@ const HallTicket = () => {
         <embed
           type="application/pdf"
           src={pdfSource}
-          width="100%"
-          height="100%"
+          width="1200px"
+          height="400px"
         ></embed>
       </div>
     );
