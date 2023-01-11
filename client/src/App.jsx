@@ -9,6 +9,7 @@ import Home from "./pages/Home/Home";
 import HallTicket from "./components/dashboard/HallTicket/HallTicket";
 import StudentDashboard from "./pages/Dashboard/StudentDashboard/StudentDashboard";
 import StudentSignup from "./pages/auth/student/StudentSignup";
+import VerifyStudent from "./pages/auth/student/VerifyStudent";
 
 const router = createBrowserRouter([
   {
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
                 element: <StaffSignup />,
               },
               {
-                path: "children",
+                path: "student",
                 element: <StudentSignup />,
               },
             ],
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
           {
             path: "verify/staff/",
             element: <VerifyStaff />,
+          },
+          {
+            path: "verify/student/",
+            element: <VerifyStudent />,
           },
           {
             path: "logout/",
