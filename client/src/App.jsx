@@ -1,10 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
-import NotFound from "./pages/NotFound";
+import NotFound from "./pages/NotFound/NotFound";
 import axios from "axios";
 import VerifyStaff from "./pages/auth/staff/VerifyStaff";
 import StaffSignup from "./pages/auth/staff/StaffSignup";
 import Logout from "./pages/auth/Logout";
+import Home from "../../src/pages/Home/Home";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <div>Hello</div>,
+        element: <Home />,
       },
       {
         path: "auth/",
