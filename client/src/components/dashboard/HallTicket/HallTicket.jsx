@@ -1,29 +1,27 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import jsPDF from "jspdf";
 
-import { renderToString } from "react-dom/server";
-import { Document, Page } from "react-pdf";
-import FileSaver from "file-saver";
-import jsPDF from 'jspdf';
-
-const getDate=(str)=>{
+const getDate = (str) => {
   if (str !== undefined) {
-    var date = new Date(str), mnth = ("0" + (date.getMonth() + 1)).slice(-2), day = ("0" + date.getDate()).slice(-2);
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
     return [day, mnth, date.getFullYear()].join("-");
   } else {
     return "";
   }
-}
+};
 
 const HallTicket = () => {
-  var studentInfo=null;
+  var studentInfo = null;
   console.log("hello");
+  const [pdfSource, setPdfSource] = useState(null);
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [encodedUri, setEncodedUri] = useState(null);
   const [loading, setLoading] = useState(true);
-  var htmlContent=
-  `<style>
+  var htmlContent = `<style>
             table{
                 width:100%
             }
@@ -38,19 +36,29 @@ const HallTicket = () => {
       .get("api/studentinfo/202099")
       .then((res) => {
         console.log(res.data[0].name);
-        htmlContent+="<h1>HallTicket</h1>";
-        htmlContent+="<h1>Name:"+res.data[0].name+"</h1>";
-        htmlContent+="<h1>RollNumber:"+res.data[0].rollNo+"</h1>";
-        htmlContent+="<h1>DepartmentID:"+res.data[0].deptID+`</h1><table style='width:100%'>`;
+        htmlContent += "<h1>HallTicket</h1>";
+        htmlContent += "<h1>Name:" + res.data[0].name + "</h1>";
+        htmlContent += "<h1>RollNumber:" + res.data[0].rollNo + "</h1>";
+        htmlContent +=
+          "<h1>DepartmentID:" +
+          res.data[0].deptID +
+          `</h1><table style='width:100%'>`;
 
-        axios.get("api/examslist/it")
-        .then((res)=>{
+        axios.get("api/examslist/it").then((res) => {
           console.log(res.data);
-          for(let i=0;i<res.data.length;i++){
-            htmlContent+="<tr><td>"+res.data[i].subjectName+"</td><td>"+res.data[i].subjectCode+"</td><td>"
-            +getDate(res.data[i].examDate)+"</td><td>"+res.data[i].session+"</td><td></td></tr>"
+          for (let i = 0; i < res.data.length; i++) {
+            htmlContent +=
+              "<tr><td>" +
+              res.data[i].subjectName +
+              "</td><td>" +
+              res.data[i].subjectCode +
+              "</td><td>" +
+              getDate(res.data[i].examDate) +
+              "</td><td>" +
+              res.data[i].session +
+              "</td><td></td></tr>";
           }
-          htmlContent+="</table>";
+          htmlContent += "</table>";
           const pdf = new jsPDF({
             orientation: "p",
             unit: "pt",
@@ -61,12 +69,11 @@ const HallTicket = () => {
               windowWidth: 794,
               html2canvas: { scale: 0.57 },
             })
-            .then(() => { 
-              pdf.save('./test.pdf');
+            .then(() => {
+              setPdfSource(pdf.output("datauristring"));
+              setLoading(false);
             });
-        })
-        
-        setLoading(false);
+        });
       })
       .catch((err) => {
         console.log("err" + err);
@@ -81,7 +88,7 @@ const HallTicket = () => {
         <h1>hello</h1>
         <embed
           type="application/pdf"
-          src={"./test.pdf"}
+          src={pdfSource}
           width="100%"
           height="100%"
         ></embed>
@@ -103,7 +110,7 @@ export default HallTicket;
 //     windowWidth: 794,
 //     html2canvas: { scale: 0.57 },
 //   })
-//   .then(() => { 
+//   .then(() => {
 //     pdf.save('test.pdf');
 //   });
 // useEffect(() => {
