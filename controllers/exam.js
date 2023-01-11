@@ -16,14 +16,14 @@ exports.createExam=async (req,res)=>{
             deptID:req.body.deptID
         });
         if(data!=null){
-            const list=await students.find({},{_id:0,__v:0});
-            list.forEach((student)=>{
-                if(student.deptID===req.body.deptID)
-                {
-                    console.log("hallticket creating...");
-                    updateHalltickets(student,req.body);
-                }
-            })
+            // const list=await students.find({},{_id:0,__v:0});
+            // list.forEach((student)=>{
+            //     if(student.deptID===req.body.deptID)
+            //     {
+            //         console.log("hallticket creating...");
+            //         updateHalltickets(student,req.body);
+            //     }
+            // });
             res.status(200).json(data);
         }
         else{
