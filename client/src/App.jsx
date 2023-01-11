@@ -13,6 +13,7 @@ import VerifyStudent from "./pages/auth/student/VerifyStudent";
 import StudentLogin from "./pages/auth/student/StudentLogin";
 import StaffLogin from "./pages/auth/staff/StaffLogin";
 import StaffDashboard from "./pages/Dashboard/StaffDashboard/StaffDashboard";
+import ChooseCourses from "./pages/auth/staff/ChooseCourses";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
             element: <StaffDashboard />,
           },
         ],
+      },
+      {
+        path: "choose-courses/",
+        element: <ChooseCourses />,
       },
       {
         path: "auth/",

@@ -23,7 +23,7 @@ const VerifyStaff = () => {
       .post("/api/verifysf", { staffID, otp })
       .then((res) => {
         if (res.data.verified === 1) {
-          navigate("/");
+          navigate("/choose-courses");
         } else {
           setError("Invalid OTP entered");
         }

@@ -62,6 +62,8 @@ const StaffSignup = () => {
             userType: "staff",
           })
         );
+        localStorage.setItem("staffID", res.data.staffID);
+        localStorage.setItem("staffDept", department["value"]);
         navigate("/auth/verify/staff");
       })
       .catch((err) => {

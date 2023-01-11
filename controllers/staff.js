@@ -70,6 +70,7 @@ exports.signup = async (req, res) => {
       }
       res.status(200).json({
         message: "signed up",
+        staffID: newUser.staffID,
       });
     } else {
       res.status(200).json({
