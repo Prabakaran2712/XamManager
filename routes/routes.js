@@ -25,12 +25,23 @@ router.get("/exams/:id1/:id2", staffController.getExams);
 //verify email for staff
 router.post("/verifysf", staffController.verifyEmailConfirmation);
 
+//students
+router.get("/studentslist", studentController.list);
+
 //student
 //sign up
 router.post("/studentsignup", studentController.signup);
 
 //login
 router.post("/studentlogin", studentController.login);
+
+//info
+//id-rollNo
+router.get("/studentinfo/:id",studentController.studentInfo);
+
+//examslist for a department
+//id-deptID
+router.get("/examslist/:id",studentController.examsList);
 
 //update
 //id-rollNo
@@ -40,14 +51,12 @@ router.put("/studentupdate/:id", studentController.update);
 //id-rollNo
 router.delete("/studentdelete/:id", studentController.delete);
 
-//students
-router.get("/studentslist", studentController.list);
-
 //verify email for student
 router.post("/verifyst", studentController.verifyEmailConfirmation);
 
 //hallticket retrieval
-router.post("/hallticket", studentController.getHallticket);
+//id-rollNo
+router.get("/hallticket/:id", studentController.getHallticket);
 
 //exam notifications
 router.get("/notifications", studentController.getNotifications);
