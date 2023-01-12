@@ -6,8 +6,7 @@ import axios from "axios";
 
 const Exam = () => {
   const navigate = useNavigate();
-  const staff=JSON.parse(localStorage.getItem("sfuser"));
-  console.log(staff);
+  const staff = JSON.parse(localStorage.getItem("sfuser"));
   const [examID, setexamID] = useState("");
   const [staffName, setstaffName] = useState("");
   const [subjectName, setsubjectName] = useState("");
@@ -30,39 +29,39 @@ const Exam = () => {
       subjectCode === "" ||
       examDate === "" ||
       venue === "" ||
-      timing==="" ||
-      mode==="" ||
-      session===""
+      timing === "" ||
+      mode === "" ||
+      session === ""
     ) {
       setError("Fill all the required fields");
       return;
     }
     console.log({
-      examID:examID,
-      staffName:staffName,
-      subjectName:subjectName,
-      subjectCode:subjectCode,
-      examDate:examDate,
-      venue:venue,
-      timing:timing,
-      mode:mode,
+      examID: examID,
+      staffName: staffName,
+      subjectName: subjectName,
+      subjectCode: subjectCode,
+      examDate: examDate,
+      venue: venue,
+      timing: timing,
+      mode: mode,
       deptID: staff.deptID,
-      session:session,
-      staffID:staff.staffID
+      session: session,
+      staffID: staff.staffID,
     });
     axios
       .post("/api/createexam", {
-        examID:examID,
-        staffName:staffName,
-        subjectName:subjectName,
-        subjectCode:subjectCode,
-        examDate:examDate,
-        venue:venue,
-        timing:timing,
-        mode:mode,
+        examID: examID,
+        staffName: staffName,
+        subjectName: subjectName,
+        subjectCode: subjectCode,
+        examDate: examDate,
+        venue: venue,
+        timing: timing,
+        mode: mode,
         deptID: staff.deptID,
-        session:session,
-        staffID:staff.staffID
+        session: session,
+        staffID: staff.staffID,
       })
       .then((res) => {
         console.log("exam created");

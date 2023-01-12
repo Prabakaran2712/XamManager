@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 const Logout = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    localStorage.removeItem("user");
+    localStorage.removeItem("stuser");
+    localStorage.removeItem("sfuser");
     navigate("/");
   }, []);
   return <div>Logout</div>;

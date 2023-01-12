@@ -2,15 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const getDate = (str) => {
-    if (str !== undefined) {
-      var date = new Date(str),
-        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-        day = ("0" + date.getDate()).slice(-2);
-      return [day, mnth, date.getFullYear()].join("-");
-    } else {
-      return "";
-    }
-  };
+  if (str !== undefined) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [day, mnth, date.getFullYear()].join("-");
+  } else {
+    return "";
+  }
+};
 
 const Notifications = () => {
   const [deptId, setDeptId] = useState("5060");
@@ -23,7 +23,6 @@ const Notifications = () => {
     axios.get(`api/notifications/IT`).then((res) => {
       setData(res.data);
       if (id) setDeptId(id);
-      console.log(res.data);
       setLoading(false);
     });
   }, []);

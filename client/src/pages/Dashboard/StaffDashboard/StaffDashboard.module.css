@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 15%;
+  width: 18%;
   height: 100%;
   background-image: linear-gradient(25deg, #d64c7f, #ee4758 50%);
 }

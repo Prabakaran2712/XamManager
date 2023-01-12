@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputWithLabel from "../../../components/form/InputWithLabel";
 import axios from "axios";
@@ -8,7 +8,12 @@ const StaffLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  useEffect(() => {
+    const user = localStorage.getItem("sfuser");
+    if (user) {
+      navigate("/dashboard/staff");
+    }
+  });
   const submitForm = (e) => {
     e.preventDefault();
     setError("");
@@ -36,7 +41,7 @@ const StaffLogin = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        setError(err.response.data.message);
       });
   };
 

@@ -5,14 +5,12 @@ const Students = () => {
   const [deptId, setDeptId] = useState("5060");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const staff=JSON.parse(localStorage.getItem("sfuser"));
-  console.log(staff);
-  
+  const staff = JSON.parse(localStorage.getItem("sfuser"));
+
   const [deptName, setDepartmentName] = useState("");
 
   useEffect(() => {
     axios.get(`api/studentslist/${staff.deptID}`).then((res) => {
-      console.log(res.data);
       setData(res.data);
       setLoading(false);
     });

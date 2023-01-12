@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputWithLabel from "../../../components/form/InputWithLabel";
 import axios from "axios";
@@ -9,7 +9,12 @@ const StudentLogin = () => {
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState("");
-
+  useEffect(() => {
+    const user = localStorage.getItem("stuser");
+    if (user) {
+      navigate("/dashboard/student");
+    }
+  }, []);
   const submitForm = (e) => {
     e.preventDefault();
     setError("");
@@ -37,6 +42,7 @@ const StudentLogin = () => {
         }
       })
       .catch((err) => {
+        console.log("eds");
         setError(err.response.data.message);
       });
   };

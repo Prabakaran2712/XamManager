@@ -66,6 +66,14 @@ const StudentDashboard = () => {
         >
           View Attendance
         </div>
+        <div
+          className={"p-4 m-2 display " + styles["element"]}
+          onClick={() => {
+            navigate("/auth/logout");
+          }}
+        >
+          Logout
+        </div>
       </div>
       <div className={"w-100 " + styles["main-content"]}>
         {page === "profile" ? <StudentProfile /> : null}

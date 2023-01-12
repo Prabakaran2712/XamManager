@@ -20,8 +20,8 @@ const StaffProfile = () => {
   const [curItem, setCurItem] = useState("");
   const [allCourses, setAllCourses] = useState(null);
   const [success, setSuccess] = useState(null);
-  // const id = localStorage.getItem("staffID") || "Praba2712";
-  const id = "505060";
+  const id = JSON.parse(localStorage.getItem("sfuser")).staffID;
+
   const validateEmail = (email) => {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
@@ -120,8 +120,8 @@ const StaffProfile = () => {
   if (!loading) {
     return (
       <div className={"m-5 " + styles["profile-container"]}>
-        <div className="mx-auto  rounded p-3 my-3 w-50">
-          <div className="display-6 my-3 text-center">Profile</div>
+        <div className="mx-auto  rounded p-3 my-3 w-75">
+          <div className="display-5 my-3 text-center">Profile</div>
           <form>
             <InputWithLabel
               label="Name"
@@ -249,7 +249,7 @@ const StaffProfile = () => {
             <div className="mb-3 text-center">
               <button
                 onClick={(e) => submitForm(e)}
-                className="btn btn-primary"
+                className="btn btn-outline-danger"
               >
                 Update
               </button>
