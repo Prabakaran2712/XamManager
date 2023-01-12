@@ -25,9 +25,10 @@ const StudentLogin = () => {
       .then((res) => {
         if (res.data.auth === 1) {
           localStorage.setItem(
-            "user",
+            "stuser",
             JSON.stringify({
               rollNo: res.data.rollNo,
+              deptID:res.data.deptID,
               userType: "student",
               verified: true,
             })
