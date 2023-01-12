@@ -4,6 +4,26 @@ const nodemailer = require("nodemailer");
 const exams = require("../db/examModel");
 const bcrypt = require("bcryptjs");
 
+//get staff details
+exports.getStaff = async (req, res) => {
+  try {
+    const data = await staffs
+      .findOne({ staffID: req.params.id })
+      .populate("courses");
+    if (data != null) {
+      res.status(200).json({
+        data: data,
+      });
+    } else {
+      res.status(400).json({
+        message: "Error in getting Staff Details",
+      });
+    }
+  } catch (err) {
+    res.status(404).json({ msg: err.message });
+  }
+};
+
 //get courses taken
 exports.getStaffCourses = async (req, res) => {
   try {
@@ -221,7 +241,7 @@ exports.verifyEmailConfirmation = async (req, res) => {
 exports.getExams = async (req, res) => {
   try {
     const list = await exams.find({
-      staffName: req.params.id1,
+      staffID: req.params.id1,
       deptID: req.params.id2,
     });
     if (list != null) {

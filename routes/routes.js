@@ -7,6 +7,9 @@ const courseController = require("../controllers/course");
 const departmentController = require("../controllers/department");
 //staff
 
+//get details of a staff id
+router.get("/staff/:id", staffController.getStaff);
+
 //get courses for a staff
 router.get("/getStaffCourses/:id", staffController.getStaffCourses);
 

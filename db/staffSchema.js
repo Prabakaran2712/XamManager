@@ -28,8 +28,8 @@ const schema = new mongoose.Schema(
       required: [true, "Required Field"],
     },
     exams: {
-      type: Array,
-      default: [],
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "exams",
     },
     verified: {
       type: Boolean,

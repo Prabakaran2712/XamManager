@@ -4,6 +4,8 @@ import StudentProfile from "../../../components/dashboard/StudentProfile/Student
 import Courses from "../../../components/dashboard/Courses/Courses";
 import HallTicket from "../../../components/dashboard/HallTicket/HallTicket";
 import Exam from "../../../components/dashboard/Exam/Exam";
+import ViewExams from "../../../components/dashboard/ViewExams/ViewExams";
+import StaffProfile from "../../../components/StaffProfile/StaffProfile";
 const StaffDashboard = () => {
   const [page, setPage] = useState("profile");
   const switchpage = (page) => {
@@ -47,16 +49,17 @@ const StaffDashboard = () => {
         <div
           className={"p-4 m-2 display " + styles["element"]}
           onClick={() => {
-            switchpage("attendence");
+            switchpage("viewexam");
           }}
         >
-          view Attendance
+          view Exams
         </div>
       </div>
       <div className={"w-100 " + styles["main-content"]}>
-        {page === "profile" ? <StudentProfile /> : null}
+        {page === "profile" ? <StaffProfile /> : null}
         {page === "exam" ? <Exam /> : null}
         {page === "hallticket" ? <HallTicket /> : null}
+        {page === "viewexam" ? <ViewExams /> : null}
       </div>
     </div>
   );
