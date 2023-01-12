@@ -4,6 +4,7 @@ const nodemailer = require("nodemailer");
 const exams = require("../db/examModel");
 const bcrypt = require("bcryptjs");
 
+
 //get staff details
 exports.getStaff = async (req, res) => {
   try {
@@ -23,6 +24,7 @@ exports.getStaff = async (req, res) => {
     res.status(404).json({ msg: err.message });
   }
 };
+
 
 //get courses taken
 exports.getStaffCourses = async (req, res) => {
@@ -91,6 +93,7 @@ exports.signup = async (req, res) => {
       res.status(200).json({
         message: "signed up",
         staffID: newUser.staffID,
+        deptID:newUser.deptID
       });
     } else {
       res.status(200).json({
@@ -138,6 +141,7 @@ exports.login = async (req, res) => {
         return res.status(200).json({
           auth: 1,
           staffID: user.staffID,
+          deptID:user.deptID
         });
       } else {
         return res.status(200).json({
@@ -241,8 +245,7 @@ exports.verifyEmailConfirmation = async (req, res) => {
 exports.getExams = async (req, res) => {
   try {
     const list = await exams.find({
-      staffID: req.params.id1,
-      deptID: req.params.id2,
+      staffID: req.params.id
     });
     if (list != null) {
       res.status(200).json(list);
