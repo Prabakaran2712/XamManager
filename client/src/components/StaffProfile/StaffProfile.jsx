@@ -20,7 +20,7 @@ const StaffProfile = () => {
   const [curItem, setCurItem] = useState("");
   const [allCourses, setAllCourses] = useState(null);
   // const id = localStorage.getItem("staffID") || "Praba2712";
-  const id = "100";
+  const id = "505060";
   const validateEmail = (email) => {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
@@ -36,6 +36,7 @@ const StaffProfile = () => {
       .get(`api/staff/${id}`)
       .then((res) => {
         const data = res.data.data;
+
         setName(data.name);
         setStaffId(data.staffID);
         setDepartment(data.deptID);
@@ -55,8 +56,7 @@ const StaffProfile = () => {
           });
           setCourses(course_temp);
           setOptions(opt_temp);
-          console.log(course_temp);
-          console.log(opt_temp);
+
           setLoading(false);
         });
       })
@@ -67,14 +67,7 @@ const StaffProfile = () => {
   const submitForm = (e) => {
     e.preventDefault();
     setError("");
-    if (
-      name === "" ||
-      staffId === "" ||
-      email === "" ||
-      password === "" ||
-      confirmPassword === "" ||
-      department === ""
-    ) {
+    if (name === "" || staffId === "" || email === "" || department === "") {
       setError("Fill all the required fields");
       return;
     }
@@ -87,12 +80,13 @@ const StaffProfile = () => {
       return;
     }
     axios
-      .post("/api/staffsignup", {
+      .put(`/api/staffupdate/${id}`, {
         name,
         staffID: staffId,
         email,
         deptID: department["value"],
         password,
+        courses: courses,
       })
       .then((res) => {
         localStorage.setItem(
@@ -167,7 +161,7 @@ const StaffProfile = () => {
                     value={curItem}
                     onChange={(e) => setCurItem(e.target.value)}
                   >
-                    <option value="">Choose an item to add</option>
+                    <option value="">Choose an Course to add</option>
                     {options &&
                       options.map((item) => {
                         if (!courses.includes(item._id)) {
@@ -204,7 +198,8 @@ const StaffProfile = () => {
                 <tbody>
                   {courses &&
                     courses.map((id, idx) => {
-                      var item = allCourses.find((item) => item._id == id);
+                      var item = allCourses.filter((el) => id === el._id)[0];
+                      console.log(item);
                       return (
                         <tr key={item._id + "b"}>
                           <td>{idx + 1}</td>

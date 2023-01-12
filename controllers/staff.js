@@ -4,13 +4,13 @@ const nodemailer = require("nodemailer");
 const exams = require("../db/examModel");
 const bcrypt = require("bcryptjs");
 
-
 //get staff details
 exports.getStaff = async (req, res) => {
   try {
     const data = await staffs
       .findOne({ staffID: req.params.id })
       .populate("courses");
+    console.log(data);
     if (data != null) {
       res.status(200).json({
         data: data,
@@ -25,14 +25,13 @@ exports.getStaff = async (req, res) => {
   }
 };
 
-
 //get courses taken
 exports.getStaffCourses = async (req, res) => {
   try {
     const data = await staffs
       .findOne({ staffID: req.params.id })
       .populate("courses");
-    console.log(data);
+
     if (data != null) {
       res.status(200).json({
         data: data.courses,
@@ -93,7 +92,7 @@ exports.signup = async (req, res) => {
       res.status(200).json({
         message: "signed up",
         staffID: newUser.staffID,
-        deptID:newUser.deptID
+        deptID: newUser.deptID,
       });
     } else {
       res.status(200).json({
@@ -141,7 +140,7 @@ exports.login = async (req, res) => {
         return res.status(200).json({
           auth: 1,
           staffID: user.staffID,
-          deptID:user.deptID
+          deptID: user.deptID,
         });
       } else {
         return res.status(200).json({
@@ -160,14 +159,33 @@ exports.login = async (req, res) => {
 
 exports.update = async (req, res) => {
   try {
-    const upstaff = await staffs.findOneAndUpdate(
-      { staffID: req.params.id },
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    console.log(req.body);
+    const pass = req.body.password;
+    if (pass.length == 0) {
+      const pass = await staffs
+        .findOne({ staffID: req.params.id })
+        .select("password");
+      var upstaff = await staffs.findOneAndUpdate(
+        { staffID: req.params.id },
+        { ...req.body, password: pass.password },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    } else {
+      const gensalt = bcrypt.genSaltSync(10);
+      const hpass = await bcrypt.hashSync(req.body.password, gensalt);
+      req.body.password = hpass;
+      var upstaff = await staffs.findOneAndUpdate(
+        { staffID: req.params.id },
+        { ...req.body, password: hpass },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    }
     if (upstaff != null) {
       res.status(200).json({
         status: "success",
@@ -245,7 +263,7 @@ exports.verifyEmailConfirmation = async (req, res) => {
 exports.getExams = async (req, res) => {
   try {
     const list = await exams.find({
-      staffID: req.params.id
+      staffID: req.params.id,
     });
     if (list != null) {
       res.status(200).json(list);

@@ -7,14 +7,15 @@ import HallTicket from "../../../components/dashboard/HallTicket/HallTicket";
 import Exam from "../../../components/dashboard/Exam/Exam";
 import Students from "../../../components/dashboard/Students/Students";
 import ExamList from "../../../components/dashboard/ExamList/ExamList";
+import StaffProfile from "../../../components/StaffProfile/StaffProfile";
 const StaffDashboard = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const user = localStorage.getItem("sfuser");
-    if (!user) {
-      navigate("/auth/login/staff");
-    }
+    // if (!user) {
+    //   navigate("/auth/login/staff");
+    // }
     setLoading(false);
   }, []);
   const [page, setPage] = useState("profile");
@@ -69,7 +70,7 @@ const StaffDashboard = () => {
         </div>
       </div>
       <div className={"w-100 " + styles["main-content"]}>
-        {page === "profile" ? <StudentProfile /> : null}
+        {page === "profile" ? <StaffProfile /> : null}
         {page === "exam" ? <Exam /> : null}
         {page === "students" ? <Students /> : null}
         {page === "examlist" ? <ExamList /> : null}

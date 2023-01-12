@@ -52,7 +52,7 @@ exports.signup = async (req, res) => {
       }
       res.status(200).json({
         rollNo: newUser.rollNo,
-        deptID:newUser.deptID
+        deptID: newUser.deptID,
       });
     } else {
       res.status(200).json({
@@ -70,7 +70,10 @@ exports.signup = async (req, res) => {
 
 exports.list = async (req, res) => {
   try {
-    const data = await students.find({deptID:req.params.id}, { _id: 0, __v: 0 });
+    const data = await students.find(
+      { deptID: req.params.id },
+      { _id: 0, __v: 0 }
+    );
     if (data.length > 0) {
       res.status(200).json(data);
     } else {
@@ -139,7 +142,7 @@ exports.login = async (req, res) => {
             return res.status(200).json({
               auth: 1,
               rollNo: user.rollNo,
-              deptID:user.deptID
+              deptID: user.deptID,
             });
           } else {
             return res.status(200).json({
@@ -159,14 +162,34 @@ exports.login = async (req, res) => {
 exports.update = async (req, res) => {
   try {
     console.log("updating...");
-    const upstudent = await students.findOneAndUpdate(
-      { rollNo: req.params.id },
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    console.log(req.body);
+    const pass = req.body.password;
+    if (pass.length === 0) {
+      const pass = await students
+        .findOne({ rollNo: req.params.id })
+        .select("password");
+      var upstudent = await students.findOneAndUpdate(
+        { rollNo: req.params.id },
+        { ...req.body, password: pass.password, deptName: "IT" },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    } else {
+      console.log(req.body.deptName);
+      const gensalt = bcrypt.genSaltSync(10);
+      const hpass = await bcrypt.hashSync(pass, gensalt);
+      var upstudent = await students.findOneAndUpdate(
+        { rollNo: req.params.id },
+        { ...req.body, password: hpass, deptName: req.body.deptName },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    }
+    console.log("success");
     if (upstudent != null) {
       res.status(200).json({
         status: "success",
@@ -180,13 +203,13 @@ exports.update = async (req, res) => {
       });
     }
   } catch (err) {
+    console.log(err);
     res.status(404).json({
       status: "fail",
       message: err,
     });
   }
 };
-
 exports.delete = async (req, res) => {
   try {
     const delStudent = await students.deleteOne({ rollNo: req.params.id });
