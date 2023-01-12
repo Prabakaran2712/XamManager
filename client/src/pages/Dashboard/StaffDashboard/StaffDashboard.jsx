@@ -4,8 +4,8 @@ import StudentProfile from "../../../components/dashboard/StudentProfile/Student
 import Courses from "../../../components/dashboard/Courses/Courses";
 import HallTicket from "../../../components/dashboard/HallTicket/HallTicket";
 import Exam from "../../../components/dashboard/Exam/Exam";
-import ViewExams from "../../../components/dashboard/ViewExams/ViewExams";
-import StaffProfile from "../../../components/StaffProfile/StaffProfile";
+import Students from "../../../components/dashboard/Students/Students";
+import ExamList from "../../../components/dashboard/ExamList/ExamList";
 const StaffDashboard = () => {
   const [page, setPage] = useState("profile");
   const switchpage = (page) => {
@@ -41,25 +41,25 @@ const StaffDashboard = () => {
         <div
           className={"p-4 m-2 display " + styles["element"]}
           onClick={() => {
-            switchpage("marks");
+            switchpage("examlist");
           }}
         >
-          view Marks
+          Exams List
         </div>
         <div
           className={"p-4 m-2 display " + styles["element"]}
           onClick={() => {
-            switchpage("viewexam");
+            switchpage("students");
           }}
         >
-          view Exams
+          View Students
         </div>
       </div>
       <div className={"w-100 " + styles["main-content"]}>
-        {page === "profile" ? <StaffProfile /> : null}
+        {page === "profile" ? <StudentProfile /> : null}
         {page === "exam" ? <Exam /> : null}
-        {page === "hallticket" ? <HallTicket /> : null}
-        {page === "viewexam" ? <ViewExams /> : null}
+        {page === "students" ? <Students /> : null}
+        {page === "examlist" ? <ExamList /> : null}
       </div>
     </div>
   );
