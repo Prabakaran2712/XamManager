@@ -19,6 +19,7 @@ const StaffProfile = () => {
   const [options, setOptions] = useState([]);
   const [curItem, setCurItem] = useState("");
   const [allCourses, setAllCourses] = useState(null);
+  const [success, setSuccess] = useState(null);
   // const id = localStorage.getItem("staffID") || "Praba2712";
   const id = "505060";
   const validateEmail = (email) => {
@@ -90,15 +91,16 @@ const StaffProfile = () => {
       })
       .then((res) => {
         localStorage.setItem(
-          "user",
+          "sfuser",
           JSON.stringify({
             staffID: staffId,
+            deptID: department["value"],
             userType: "staff",
           })
         );
         localStorage.setItem("staffID", res.data.staffID);
         localStorage.setItem("staffDept", department["value"]);
-        navigate("/auth/verify/staff");
+        setSuccess("Updated Successfully");
       })
       .catch((err) => {
         console.log(err);
@@ -244,24 +246,19 @@ const StaffProfile = () => {
             {error !== "" && (
               <div className="alert alert-danger text-center">{error}</div>
             )}
-            <div className="mb-3">
+            <div className="mb-3 text-center">
               <button
                 onClick={(e) => submitForm(e)}
                 className="btn btn-primary"
               >
-                Sign Up
+                Update
               </button>
             </div>
-            <div>
-              <div className="small">
-                Already have an account?{" "}
-                <Link to="/auth/login/staff">Login</Link>
+            {success && (
+              <div class="alert alert-success" role="alert">
+                {success}
               </div>
-              <div className="small">
-                Not a staff?{" "}
-                <Link to="/auth/signup/student">Student sign up</Link>
-              </div>
-            </div>
+            )}
           </form>
         </div>
       </div>

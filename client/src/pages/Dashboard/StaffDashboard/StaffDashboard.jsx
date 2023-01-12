@@ -44,14 +44,7 @@ const StaffDashboard = () => {
         >
           Create Exam
         </div>
-        <div
-          className={"p-4 m-2 display " + styles["element"]}
-          onClick={() => {
-            switchpage("hallticket");
-          }}
-        >
-          View HallTicket
-        </div>
+
         <div
           className={"p-4 m-2 display " + styles["element"]}
           onClick={() => {
