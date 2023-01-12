@@ -21,8 +21,9 @@ const ChooseCourses = () => {
       });
   };
   useEffect(() => {
-    const staffDept = localStorage.getItem("staffDept");
-    const staffID = localStorage.getItem("staffID");
+    const staff=JSON.parse(localStorage.getItem("sfuser"));
+    const staffDept = staff.deptID;
+    const staffID = staff.staffID;
     if (!staffDept || !staffID) {
       navigate("/");
     }
