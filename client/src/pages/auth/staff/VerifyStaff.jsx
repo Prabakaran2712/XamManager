@@ -9,13 +9,13 @@ const VerifyStaff = () => {
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    const user = JSON.parse(localStorage.getItem("sfuser"));
     if (!user) {
       navigate("/auth/signup/staff");
       return;
     }
-    const { staffID } = JSON.parse(user);
-    setStaffID(staffID);
+    // const { staffID } = JSON.parse(user);
+    setStaffID(user.staffID);
   }, []);
   const verify = (e) => {
     e.preventDefault();
