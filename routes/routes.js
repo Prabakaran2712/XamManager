@@ -26,14 +26,15 @@ router.put("/staffupdate/:id", staffController.update);
 router.delete("/staffdelete/:id", staffController.delete);
 
 //getcreated exams
-//id1-staffName,id2-deptID
-router.get("/exams/:id1/:id2", staffController.getExams);
+//id-staffID
+router.get("/exams/:id", staffController.getExams);
 
 //verify email for staff
 router.post("/verifysf", staffController.verifyEmailConfirmation);
 
 //students
-router.get("/studentslist", studentController.list);
+//id-deptID
+router.get("/studentslist/:id", studentController.list);
 
 //student
 //sign up
@@ -86,7 +87,8 @@ router.delete("/deleteexam/:id", examController.deleteExam);
 //Course
 
 //get Courses
-router.get("/courses", courseController.getCourses);
+//id-deptID
+router.get("/courses/:id", courseController.getCourses);
 
 //dept specific course for staff to select
 //id1-deptID
