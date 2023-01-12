@@ -5,24 +5,13 @@ const Courses = () => {
   const [deptId, setDeptId] = useState("5060");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const id = localStorage.getItem("deptId");
+  const student=JSON.parse(localStorage.getItem("stuser"));
+  console.log(student);
   const [deptName, setDepartmentName] = useState("");
 
   useEffect(() => {
-    axios.get(`api/courses`).then((res) => {
-      axios
-        .get(`api/departments/`)
-        .then((dep) => {
-          dep.data.data.find((dept) => {
-            dept.deptID === deptId
-              ? setDepartmentName(dept.departmentName)
-              : null;
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      if (id) setDeptId(id);
+    axios.get(`api/courses/${student.deptID}`).then((res) => {
+      if (student.deptID) setDeptId(student.deptID);
       console.log(res);
       setData(res.data.data);
       setLoading(false);
@@ -47,7 +36,7 @@ const Courses = () => {
                 <th scope="col">#</th>
                 <th scope="col">subject Code</th>
                 <th scope="col">subject Name</th>
-                <th scope="col">Department Name</th>
+                <th scope="col">Department ID</th>
                 <th scope="col">Regulation</th>
               </tr>
             </thead>
@@ -58,7 +47,7 @@ const Courses = () => {
                     <th scope="row">{i + 1}</th>
                     <td>{object.subjectCode}</td>
                     <td>{object.subjectName}</td>
-                    <td>{deptName}</td>
+                    <td>{object.deptID}</td>
                     <td>{object.regulation}</td>
                   </tr>
                 ))}
