@@ -9,13 +9,13 @@ const VerifyStudent = () => {
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    const user = JSON.parse(localStorage.getItem("stuser"));
     if (!user) {
       navigate("/auth/signup/student");
       return;
     }
-    const { rollNo } = JSON.parse(user);
-    setRollNo(rollNo);
+    // const { rollNo } = JSON.parse(user);
+    setRollNo(user.rollNo);
   }, []);
   const verify = (e) => {
     e.preventDefault();
