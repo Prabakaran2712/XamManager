@@ -27,12 +27,12 @@ const StaffLogin = () => {
             "sfuser",
             JSON.stringify({
               staffID: res.data.staffID,
-              deptID:res.data.deptID,
+              deptID: res.data.deptID,
               userType: "staff",
               verified: true,
             })
           );
-          navigate("/");
+          navigate("/dashboard/staff");
         }
       })
       .catch((err) => {

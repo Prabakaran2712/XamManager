@@ -1,5 +1,6 @@
 import styles from "./StaffDashboard.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import StudentProfile from "../../../components/dashboard/StudentProfile/StudentProfile";
 import Courses from "../../../components/dashboard/Courses/Courses";
 import HallTicket from "../../../components/dashboard/HallTicket/HallTicket";
@@ -7,10 +8,22 @@ import Exam from "../../../components/dashboard/Exam/Exam";
 import Students from "../../../components/dashboard/Students/Students";
 import ExamList from "../../../components/dashboard/ExamList/ExamList";
 const StaffDashboard = () => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const user = localStorage.getItem("sfuser");
+    if (!user) {
+      navigate("/auth/login/staff");
+    }
+    setLoading(false);
+  }, []);
   const [page, setPage] = useState("profile");
   const switchpage = (page) => {
     setPage(page);
   };
+  if (loading) {
+    return <div>Just a sec...</div>;
+  }
   return (
     <div className={styles.dashboard}>
       <div className={" py-5 text-center " + styles["sidebar"]}>

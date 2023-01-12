@@ -1,14 +1,28 @@
 import styles from "./StudentDashboard.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StudentProfile from "../../../components/dashboard/StudentProfile/StudentProfile";
 import Courses from "../../../components/dashboard/Courses/Courses";
 import HallTicket from "../../../components/dashboard/HallTicket/HallTicket";
 import Notifications from "../../../components/dashboard/Notifications/Notifications";
+import { useNavigate } from "react-router-dom";
+
 const StudentDashboard = () => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const user = localStorage.getItem("stuser");
+    if (!user) {
+      navigate("/auth/login/student");
+    }
+    setLoading(false);
+  }, []);
   const [page, setPage] = useState("profile");
   const switchpage = (page) => {
     setPage(page);
   };
+  if (loading) {
+    return <div>Just a sec...</div>;
+  }
   return (
     <div className={styles.dashboard}>
       <div className={" py-5 text-center " + styles["sidebar"]}>

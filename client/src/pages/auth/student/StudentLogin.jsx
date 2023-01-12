@@ -28,12 +28,12 @@ const StudentLogin = () => {
             "stuser",
             JSON.stringify({
               rollNo: res.data.rollNo,
-              deptID:res.data.deptID,
+              deptID: res.data.deptID,
               userType: "student",
               verified: true,
             })
           );
-          navigate("/");
+          navigate("/dashboard/student");
         }
       })
       .catch((err) => {
