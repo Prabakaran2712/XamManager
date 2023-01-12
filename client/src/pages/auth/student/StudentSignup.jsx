@@ -58,9 +58,10 @@ const StudentSignup = () => {
       })
       .then((res) => {
         localStorage.setItem(
-          "user",
+          "stuser",
           JSON.stringify({
             rollNo: rollNo,
+            deptID:department["value"],
             userType: "student",
             verified: false,
           })
