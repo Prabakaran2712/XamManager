@@ -24,9 +24,10 @@ const StaffLogin = () => {
       .then((res) => {
         if (res.data.auth === 1) {
           localStorage.setItem(
-            "user",
+            "sfuser",
             JSON.stringify({
               staffID: res.data.staffID,
+              deptID:res.data.deptID,
               userType: "staff",
               verified: true,
             })
