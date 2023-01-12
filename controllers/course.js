@@ -6,7 +6,7 @@ const staffs = require("../db/staffModel");
 //get All Courses List
 exports.getCourses = async (req, res) => {
   try {
-    data = await course.find();
+    data = await course.find({deptID:req.params.id});
     if (data != null) {
       res.status(200).json({
         data: data,
