@@ -56,9 +56,10 @@ const StaffSignup = () => {
       })
       .then((res) => {
         localStorage.setItem(
-          "user",
+          "sfuser",
           JSON.stringify({
             staffID: staffId,
+            deptID:department["value"],
             userType: "staff",
           })
         );
