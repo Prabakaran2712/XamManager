@@ -86,6 +86,10 @@ router.delete("/deleteexam/:id", examController.deleteExam);
 
 //Course
 
+//get all courses
+
+router.get("/deptcourses/:id", courseController.getdeptCourses);
+
 //get Courses
 
 router.get("/courses", courseController.getCourses);

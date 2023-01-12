@@ -85,7 +85,7 @@ const HallTicket = () => {
     return (
       <div className="container">
         <div className="header">
-          <p className="display-1 my-5">HallTicket</p>
+          <p className="display-5 my-5 text-center">HallTicket</p>
         </div>
         <div className="mx-auto">
           <embed

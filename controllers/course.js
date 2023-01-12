@@ -3,6 +3,24 @@ const notifications = require("../db/notifyModel");
 const fs = require("fs");
 const staffs = require("../db/staffModel");
 
+//get all dept courses
+exports.getdeptCourses = async (req, res) => {
+  try {
+    data = await course.find({ deptID: req.params.id });
+    if (data != null) {
+      res.status(200).json(data);
+    } else {
+      res.status(400).json({
+        message: "Error in getting Course ",
+      });
+    }
+  } catch (err) {
+    res.status(404).json({
+      message: err.message,
+    });
+  }
+};
+
 //get All Courses List
 exports.getCourses = async (req, res) => {
   try {

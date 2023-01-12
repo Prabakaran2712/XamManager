@@ -58,14 +58,7 @@ const StudentDashboard = () => {
         >
           Notifications
         </div>
-        <div
-          className={"p-4 m-2 display " + styles["element"]}
-          onClick={() => {
-            switchpage("attendence");
-          }}
-        >
-          View Attendance
-        </div>
+
         <div
           className={"p-4 m-2 display " + styles["element"]}
           onClick={() => {

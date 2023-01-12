@@ -2,18 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Courses = () => {
-  const [deptId, setDeptId] = useState("5060");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const student=JSON.parse(localStorage.getItem("stuser"));
-  console.log(student);
-  const [deptName, setDepartmentName] = useState("");
 
   useEffect(() => {
-    axios.get(`api/courses/${student.deptID}`).then((res) => {
-      if (student.deptID) setDeptId(student.deptID);
-      console.log(res);
-      setData(res.data.data);
+    const student = JSON.parse(localStorage.getItem("stuser"));
+    axios.get(`api/deptcourses/${student.deptID}`).then((res) => {
+      setData(res.data);
+
       setLoading(false);
     });
   }, []);
@@ -27,7 +23,7 @@ const Courses = () => {
     return (
       <div className="course-container w-75 text-center m-5 mx-auto">
         <div className="header">
-          <p className="display-1 my-5">Courses</p>
+          <p className="display-5 my-5">Courses</p>
         </div>
         <div className="body">
           <table className="table table-striped table-hover overflow-scroll">

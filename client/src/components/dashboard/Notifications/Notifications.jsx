@@ -36,7 +36,7 @@ const Notifications = () => {
     return (
       <div className="course-container w-75 text-center m-5 mx-auto">
         <div className="header">
-          <p className="display-1 my-5">Notifications</p>
+          <p className="display-5 my-5">Notifications</p>
         </div>
         <div className="body">
           <table className="table table-striped table-hover overflow-scroll">
