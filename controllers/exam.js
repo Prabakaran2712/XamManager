@@ -128,7 +128,8 @@ exports.updateExam=async (req,res)=>{
 //delete exam
 exports.deleteExam=async (req,res)=>{
     try{
-        const delExam=await exams.findOneAndDelete({examID:req.params.id1});
+        console.log("deleting...");
+        const delExam=await exams.findOneAndDelete({examID:req.params.id});
         if(delExam!=null){
             res.status(200).json({
                 status:"success"
