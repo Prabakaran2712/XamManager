@@ -255,7 +255,7 @@ const StaffProfile = () => {
               </button>
             </div>
             {success && (
-              <div class="alert alert-success" role="alert">
+              <div className="alert alert-success" role="alert">
                 {success}
               </div>
             )}

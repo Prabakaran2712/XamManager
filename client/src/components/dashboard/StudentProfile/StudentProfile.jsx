@@ -105,12 +105,12 @@ const StudentProfile = () => {
                     />
                   </div>
                   <div className="col-md-10">
-                    <label className="labels my-3">Department</label>
-                    <Select
-                      value={department}
-                      onChange={updateDept}
-                      options={departmentOptions}
-                      defaultValue={departmentOptions[0]}
+                    <label className="labels my-3">Department: </label>
+                    <input
+                      disabled
+                      type="text"
+                      className="form-control"
+                      value={formData.deptID}
                     />
                   </div>
                   <div className="col-md-10">

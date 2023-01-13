@@ -8,9 +8,11 @@ import Exam from "../../../components/dashboard/Exam/Exam";
 import Students from "../../../components/dashboard/Students/Students";
 import ExamList from "../../../components/dashboard/ExamList/ExamList";
 import StaffProfile from "../../../components/StaffProfile/StaffProfile";
+import ExamUpdate from "../../../components/dashboard/ExamUpdate/ExamUpdate";
 const StaffDashboard = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [examId, setExamId] = useState(null);
   useEffect(() => {
     const user = localStorage.getItem("sfuser");
     // if (!user) {
@@ -74,7 +76,10 @@ const StaffDashboard = () => {
         {page === "profile" ? <StaffProfile /> : null}
         {page === "exam" ? <Exam /> : null}
         {page === "students" ? <Students /> : null}
-        {page === "examlist" ? <ExamList /> : null}
+        {page === "examlist" ? (
+          <ExamList setExamId={setExamId} setPage={setPage} />
+        ) : null}
+        {page === "examupdate" ? <ExamUpdate examId={examId} /> : null}
       </div>
     </div>
   );

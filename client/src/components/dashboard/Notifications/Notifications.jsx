@@ -16,13 +16,12 @@ const Notifications = () => {
   const [deptId, setDeptId] = useState("5060");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const id = localStorage.getItem("deptId");
+  const student = JSON.parse(localStorage.getItem("stuser"));
   const [deptName, setDepartmentName] = useState("");
 
   useEffect(() => {
-    axios.get(`api/notifications/IT`).then((res) => {
+    axios.get(`api/notifications/${student.deptID}`).then((res) => {
       setData(res.data);
-      if (id) setDeptId(id);
       setLoading(false);
     });
   }, []);

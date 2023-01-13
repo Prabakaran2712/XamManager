@@ -73,6 +73,9 @@ router.get("/notifications/:id", studentController.getNotifications);
 //create
 router.post("/createexam", examController.createExam);
 
+//get exam
+router.get("/examinfo/:id", examController.getExam);
+
 //update
 //id-examID
 router.put("/updateexam/:id", examController.updateExam);
