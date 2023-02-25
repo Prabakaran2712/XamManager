@@ -12,6 +12,14 @@ This is a web application designed to manage exams for different departments of 
 * Both students and staff can update their profiles.
 * Email validation using OTP method upon signing up.
 
+## Prerequisites
+
+To run this project, you will need:
+
+* [Node.js](https://nodejs.org/) installed on your machine.
+* A package manager like [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/).
+* A MongoDB instance running on your machine or a cloud-based service like [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
+
 ## Technologies Used
 
 * HTML
@@ -25,14 +33,10 @@ This is a web application designed to manage exams for different departments of 
 
 1. Clone the repository:
 
-<pre><div class="bg-black mb-4 rounded-md"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans"><span class="">bash</span></div></div></pre>
-
-<pre><div class="bg-black mb-4 rounded-md"><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-bash">git clone https://github.com/your-username/exam-manager.git
+<pre><div class="bg-black mb-4 rounded-md"><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-bash">https://github.com/Pr454th/Xam-Manager.git
 </code></div></div></pre>
 
 2. Install dependencies:
-
-<pre><div class="bg-black mb-4 rounded-md"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans"></div></div></pre>
 
 <pre><div class="bg-black mb-4 rounded-md"><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs">npm install
 </code></div></div></pre>
@@ -41,8 +45,8 @@ This is a web application designed to manage exams for different departments of 
 
 <pre><div class="bg-black mb-4 rounded-md"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans"><span class="">makefile</span></div></div></pre>
 
-<pre><div class="bg-black mb-4 rounded-md"><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-makefile">DB_CONNECTION=<your-mongodb-connection-string>
-SECRET_KEY=<your-secret-key>
+<pre><div class="bg-black mb-4 rounded-md"><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-makefile">MONGO_URL=<your-mongodb-connection-string>
+PORT=<your-secret-key>
 MAILER_EMAIL=<your-email-address>
 MAILER_PASSWORD=<your-email-password>
 </code></div></div></pre>
