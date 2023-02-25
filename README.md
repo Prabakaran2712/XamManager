@@ -1,4 +1,4 @@
-# Exam Manager Web Application
+# 🐬Exam Manager Web Application 🐬
 
 This is a web application designed to manage exams for different departments of an educational institution. The application allows staff to register and choose subjects of their respective departments and create exams for the students. Students can sign up and select their respective departments and can view notifications about the created exams of their departments available for 24hrs and can view their hall tickets which is dynamically created upon exam creation. Both students and staff can update their profiles and email are validated using OTP method upon signing up.
 
